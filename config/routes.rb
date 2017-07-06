@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'pins#index'
-
+  get '/library' => 'pins#index'
   resources :pins
     
   # Example of regular route:
