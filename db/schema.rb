@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170760022457) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "pins", ["category_id"], name: "index_pins_on_category_id", using: :btree
