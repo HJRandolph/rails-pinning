@@ -5,17 +5,18 @@
 </div>
 
 <div class="show-pin">
-  <p><%= "#{@pin.text}" %></p>
+	<div class="col-md-6"> <p><%= "#{@pin.text}" %></p></div>
+	<div class="col-md-6">  <p class="med"><%= image_tag @pin.image(:medium) %></p></div>
 
-  <hr/>
-  <p>
-    <b>Visit: </b>
-    <%= link_to "#{@pin.title}", @pin.url, html_options = {target: "_blank", class: "url"} %>
-      
-  </p>
+	<hr/>
+
+	  	<div class="col-md-12">
+		<b>Visit: </b>
+	    <%= link_to "#{@pin.title}", @pin.url, html_options = {target: "_blank", class: "url"} %>
+      	
+		</div>
+
+
+	<p class="col-md-9"><%= link_to "Edit", edit_pin_by_name_path(@pin.slug) %></p> <p class="col-md-3"><a href="/">
+	<i class="fa fa-arrow-left"></i>Back to Home</a></p>
 </div>
-<br/>
-<a href="/">
-	<i class="fa fa-arrow-left"></i>
-  Back to Home
-</a>
