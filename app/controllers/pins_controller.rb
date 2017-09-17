@@ -21,6 +21,7 @@ class PinsController < ApplicationController
   
  def edit
  	@pin = Pin.find_by_id(params[:id])
+ 	render :edit
  end
   
 def edit_by_name

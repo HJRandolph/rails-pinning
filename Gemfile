@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+ gem 'bcrypt', '~> 3.1.7'
 
 # Use Puma as the web server
 gem 'puma'
@@ -40,13 +40,20 @@ group :development, :test do
   #gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~>1.3.4'
+  gem 'spring'
   gem 'database_cleaner'
 end
 
 gem 'faker'	
 gem 'paperclip', '~> 4.3.6'
 gem 'aws-sdk', '< 2.0'
+
+group :test do
+	gem 'shoulda-matchers'
+	gem 'spring'
+	gem 'factory_girl'
+	#gem 'database-cleaner'
+end
 gem 'rspec'
 gem 'rspec-rails'
 

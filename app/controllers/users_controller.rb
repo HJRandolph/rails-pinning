@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+  	@user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -20,7 +21,10 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
-
+  # GET login
+  def login
+  end
+  
   # POST /users
   # POST /users.json
   def create
@@ -59,6 +63,17 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def authenticate
+    @user = User.authenticate(params[:email],params[:password])
+	if !@user.nil?       
+        session[:user_id] = @user.id
+	    redirect_to user_path(@user)
+    else
+    	@errors = "Either email or password is incorrect."
+    	render :login  
+	end
   end
 
   private
