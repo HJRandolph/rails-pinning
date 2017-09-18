@@ -87,6 +87,7 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       user = User.create! valid_attributes
+      post :authenticate, {email: @user.email, password: @user.password}
       get :edit, {:id => user.to_param}, valid_session
       expect(response).to be_success
     end
@@ -136,6 +137,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "redirects to the user" do
         user = User.create! valid_attributes
+        post :authenticate, {email: @user.email, password: @user.password}
         put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
         expect(response).to redirect_to(user)
       end
@@ -162,6 +164,7 @@ RSpec.describe UsersController, type: :controller do
   describe "DELETE #destroy" do
     it "destroys the requested user" do
       user = User.create! valid_attributes
+      post :authenticate, {email: @user.email, password: @user.password}
       expect {
         delete :destroy, {:id => user.to_param}, valid_session
       }.to change(User, :count).by(-1)
@@ -169,6 +172,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "redirects to the users list" do
       user = User.create! valid_attributes
+      post :authenticate, {email: @user.email, password: @user.password}
       delete :destroy, {:id => user.to_param}, valid_session
       expect(response).to redirect_to(users_url)
     end
