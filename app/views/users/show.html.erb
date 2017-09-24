@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.first_name %> <%= @user.last_name %>
-</p>
+
+  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+
 
 
 <p>
@@ -12,9 +11,16 @@
 </p>
 
 <p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+	<strong>Number of Pins: </strong>
+<%= @user.pins.count %>
+</p>
+<p><strong>Pins</strong>
+<ul>
+	<% @user.pins.each do |line| %>
+		<li><%= link_to line.title, pin_by_name_path(slug: line.slug) %></li>
+	<% end %>
+</ul>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', pins_path %>
+<%= link_to 'Edit User', edit_user_path(@user) %> |
+<%= link_to 'Pin Index', pins_path %>

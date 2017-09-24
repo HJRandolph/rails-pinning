@@ -18,6 +18,7 @@ Rails.application.routes.draw do
    #get '/:id/edit', to: 'pins#edit'
   get '/edit', to: 'pins#edit'
   post '/edit', to: 'pins#show'
+  post 'pins/repin/:id' => 'pins#repin', as: 'repin'
   
   get '/signup' => 'users#new', as: :signup
   get '/login' => 'users#login', as: :login

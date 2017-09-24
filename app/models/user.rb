@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-has_many :pins
+has_many :pinnings
+has_many :pins, through: :pinnings
 has_secure_password
 
 	validates_presence_of :first_name, :last_name, :email, :password

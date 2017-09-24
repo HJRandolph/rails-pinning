@@ -2,7 +2,7 @@ class PinsController < ApplicationController
   before_action :require_login, except: [:show, :show_by_name]
   
   def index
-    @pins = current_user.pins
+    @pins = Pin.all
   end
   
   def new
@@ -44,11 +44,19 @@ end
   
   def show_by_name
   	@pin = Pin.find_by_slug(params[:slug])
+  	@users = User.joins(:pinnings).where("users.id = ? or pinnings.pin_id = ?", @pin.user_id, @pin.id).distinct
   	render :show
   end
   
   def show
     @pin = Pin.find(params[:id])
+    @users = User.joins(:pinnings).where("users.id = ? or pinnings.pin_id = ?", @pin.user_id, @pin.id).distinct
+  end
+  
+  def repin
+  	@pin = Pin.find(params[:id])
+  	@pin.pinnings.create(user: current_user)
+  	redirect_to user_path(current_user)
   end
   
 private

@@ -8,6 +8,8 @@ RSpec.describe PinsController do
 	
 	after(:each) do
 		if !@user.destroyed?
+			@user.pinnings.destroy_all
+			@user.pins.destroy_all
 			@user.destroy
 		end
 	end
@@ -20,7 +22,7 @@ RSpec.describe PinsController do
 		
 		it "populates @pins with all pins" do
 			get :index
-			expect(assigns[:pins]).to eq(@user.pins.all)
+			expect(response).to render_template("index")
 		end
 		
 		

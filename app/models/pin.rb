@@ -1,6 +1,8 @@
 class Pin < ActiveRecord::Base
   belongs_to :category
-  belongs_to :user
+  has_many :users
+  has_many :pinnings
+
   
   validates_presence_of :title, :url, :slug, :text, :category_id
   validates_uniqueness_of :slug
