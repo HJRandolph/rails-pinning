@@ -44,13 +44,16 @@ end
   
   def show_by_name
   	@pin = Pin.find_by_slug(params[:slug])
-  	@users = User.joins(:pinnings).where("users.id = ? or pinnings.pin_id = ?", @pin.user_id, @pin.id).distinct
+  	@users = @pin.users
+  	@user = current_user
   	render :show
   end
   
   def show
     @pin = Pin.find(params[:id])
-    @users = User.joins(:pinnings).where("users.id = ? or pinnings.pin_id = ?", @pin.user_id, @pin.id).distinct
+    @users = @pin.users
+  	@pins = current_user.pins
+  	render :show
   end
   
   def repin
