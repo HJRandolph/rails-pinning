@@ -16,8 +16,8 @@
     <p>
     	Re-pinned by:
     	<ul>
-    		<% @pin.pinnings.each do |user| %>
-		<li><%= link_to User.find_by(id:user.user_id), user_path(user) %></li>
+    		<% @users.each do |user| %>
+		<li><%= link_to "#{user.first_name}", user_path(user) %></li>
 	<% end %>
     	</ul>
     </p>

@@ -13,5 +13,10 @@ class ApplicationController < ActionController::Base
 			redirect_to :login
 		end
     end
+    
+ # Confirms an admin user.
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
   
 end
