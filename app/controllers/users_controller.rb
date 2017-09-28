@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:show, :edit, :update, :destroy]
-
+#  before_action :correct_user, only: [:edit, :update, :destroy]
+ 
   # GET /users
   # GET /users.json
   def index
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+#  	@user = User.find_by_id(params[:id])
   end
   # GET login
   def login
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -82,7 +84,13 @@ class UsersController < ApplicationController
   	redirect_to login_path
   end
   
+  
   private
+  
+ # def correct_user
+ #   @user = User.find(params[:id])
+ #   redirect_to(root_url) unless current_user?(@user)
+ # end
     # Use callbacks to share common setup or constraints between actions.
 
 
@@ -90,4 +98,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password)
     end
+    
+    
 end

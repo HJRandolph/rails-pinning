@@ -14,13 +14,7 @@
 	<strong>Number of Pins: </strong>
 <%= @user.pins.count %>
 </p>
-<p><strong>Pins</strong>
-<ul>
-	<% @user.pins.each do |line| %>
-		<li><%= link_to line.title, pin_by_name_path(slug: line.slug) %></li>
-	<% end %>
-</ul>
-</p>
+<%= render partial: "shared/pins_list" %>
 
 <%= link_to 'Edit User', edit_user_path(@user) %> |
 <%= link_to 'Pin Index', pins_path %>

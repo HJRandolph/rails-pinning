@@ -3018,7 +3018,7 @@ select[multiple].form-group-lg .form-control {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: red;
+  color: #dd5566;
   text-decoration: none;
 }
 .btn:active,

@@ -7,6 +7,7 @@ class PinsController < ApplicationController
   
   def new
   	@pin = Pin.new
+  	@pin.pinnings.build
   end
   
   def create
@@ -33,6 +34,7 @@ end
    def update
  	@pin = Pin.find_by_id(params[:id])
  	@pin.update_attributes(pin_params)
+
  	if @pin.valid?
 	 	
 	 	redirect_to @pin
@@ -58,13 +60,14 @@ end
   
   def repin
   	@pin = Pin.find(params[:id])
-  	@pin.pinnings.create(user: current_user)
+  	@board = Board.find(params[:pin][:pinning][:board_id])
+  	@pin.pinnings.create(user: current_user, board_id: params[:pin][:pinning][:board_id])
   	redirect_to user_path(current_user)
   end
   
 private
   def pin_params
-  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id)
+  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, pinnings_attributes: [:user_id, :id, :board_id])
   end
 
 ################################### The Last End ###################################  
