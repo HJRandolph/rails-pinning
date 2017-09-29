@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-#  	@user = User.find_by_id(params[:id])
+  	@user = User.find_by_id(params[:id])
   end
   # GET login
   def login
@@ -32,7 +32,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

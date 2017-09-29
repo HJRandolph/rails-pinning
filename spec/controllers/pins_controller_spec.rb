@@ -108,6 +108,7 @@ describe "GET edit" do
     end
 
 
+
     it 'responds with successfully' do
       get :edit, pin: @pin_test
       expect(response.success?).to be(true)
@@ -119,7 +120,7 @@ describe "GET edit" do
     end
     
     it 'assigns an instance variable to a new pin' do
-      get :edit, id: @pin_test
+      get :edit, id: @pin_test.id
       expect(assigns(:pin)).to eq(Pin.find(1))
     end
   end
@@ -140,6 +141,7 @@ describe "POST update" do
     after(:each) do
       pin = Pin.find_by_slug("rails-wizard")
       if !pin.nil?
+      	pin.pinnings.destroy_all
         pin.destroy
       end
     end
@@ -187,6 +189,7 @@ describe "POST repin" do
 		@user = FactoryGirl.create(:user)
 		login(@user)
 		@pin = FactoryGirl.create(:pin)
+
 	end
 	
 	after(:each) do
@@ -196,6 +199,7 @@ describe "POST repin" do
 		end
 		pin = Pin.find_by_slug("rails-cheatsheet")
 		if !@pin.nil?
+
 			@pin.destroy
 		end
 		logout(@user)
