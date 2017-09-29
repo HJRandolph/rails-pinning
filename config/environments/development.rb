@@ -44,11 +44,7 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => "pinning-app-images",
-      :access_key_id => "AKIAI4Y7CIUPPOFAYN2Q", 
-#      :access_key_id => "AKIAIPRQ2W7K5N52D3KQ", mine
-      :secret_access_key => "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"
-#	  :secret_access_key => "cYNsbx13u/t3Tx34UW2Op8I+7vTB1krzbNHmir96" mine
+
   }
 }
 end
