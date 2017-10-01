@@ -1,7 +1,10 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe "boards/index", type: :view do
   before(:each) do
+		@user = FactoryGirl.create(:user)
+		login(@user)
+
     assign(:boards, [
       Board.create!(
         :name => "Name",

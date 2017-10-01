@@ -1,7 +1,9 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe "boards/edit", type: :view do
   before(:each) do
+	@user = FactoryGirl.create(:user)
+	login(@user)
     @board = assign(:board, Board.create!(
       :name => "MyString",
       :user => nil

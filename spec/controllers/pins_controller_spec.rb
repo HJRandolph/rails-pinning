@@ -106,6 +106,7 @@ describe "GET edit" do
    before(:each) do
       @pin_test = Pin.first   
     end
+    
 
 
 
@@ -120,8 +121,8 @@ describe "GET edit" do
     end
     
     it 'assigns an instance variable to a new pin' do
-      get :edit, id: @pin_test.id
-      expect(assigns(:pin)).to eq(Pin.find(1))
+      get :edit, id: @pin_test
+      expect(assigns(:pin)).to eq(@pin_test)
     end
   end
     
@@ -185,29 +186,23 @@ describe "POST update" do
 
 ################################### REPINNING ###################################  
 describe "POST repin" do
-	before(:each) do 
+	before(:each) do	
 		@user = FactoryGirl.create(:user)
 		login(@user)
 		@pin = FactoryGirl.create(:pin)
-
 	end
 	
 	after(:each) do
-		pinning = Pinning.find_by(user_id: @user.id)
-		if !pinning.nil?
-			pinning.destroy
-		end
-		pin = Pin.find_by_slug("rails-cheatsheet")
-		if !@pin.nil?
-
-			@pin.destroy
+		pin = Pin.find_by_slug("rails-wizard")
+		if !pin.nil?
+			pin.destroy
 		end
 		logout(@user)
 	end
 
 	
   it 'responds with a redirect' do
-  	post :repin, id: @pin.id, pin: [user_id: @user.id]
+  	post :repin, id: @pin.id, pin: @user.id
   	expect(response.redirect?).to be(true) 
   end
  

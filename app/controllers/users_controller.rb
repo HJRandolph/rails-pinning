@@ -31,7 +31,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    user = User.new(user_params)
+    @user = User.new(user_params)
+
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -60,6 +61,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+  	
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
