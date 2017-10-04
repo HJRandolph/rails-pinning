@@ -32,11 +32,11 @@ describe "GET new" do
 		expect(assigns(:board)).to be_a_new(Board)
 	end
 	
-#	it 'redirects to the login page if user is not logged in' do
-#		logout(@user)
-#		get :new
-#		expect(response.redirect?).to be(true)
-#	end
+	it 'redirects to the login page if user is not logged in' do
+		logout(@user)
+		get :new
+		expect(response.redirect?).to be(true)
+	end
 
 end
 
@@ -75,12 +75,24 @@ describe "POST create" do
 		expect(response).to render_template(:new)
 	end
 	
-#	it 'redirects to the login page if user is not logged in' do
-#		logout(@user)
-#		post :create, board: @board_hash
-#		expect(response).to redirect_to(:login)
-#	end
+	it 'redirects to the login page if user is not logged in' do
+		logout(@user)
+		post :create, board: @board_hash
+		expect(response).to redirect_to(:login)
+	end
+end
 
+describe "GET #show" do
+
+	it "assigns the requested board" do
+		get :show, {:id => @board.to_param}
+		expect(assigns(:board)).to eq(@board)
+	end
+	
+	it "assigns the @pins variable with the board's pins" do
+		get :show, id: @board.id
+		expect(assigns(:pins)).to eq(@board.pins)
+	end
 
 end
 ########################### The Last End ###########################

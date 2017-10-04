@@ -61,13 +61,12 @@ end
   def repin
   	@pin = Pin.find(params[:id])
   	@pin.pinnings.create(user: current_user)
-#  	@board = Board.find(params[:board_id])
   	redirect_to user_path(current_user)
   end
   
 private
   def pin_params
-  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, pinnings_attributes: [:user_id, :id, :board_id])
+  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, pinnings_attributes: [:board_id, :user_id, :id])
   end
 
 ################################### The Last End ###################################  

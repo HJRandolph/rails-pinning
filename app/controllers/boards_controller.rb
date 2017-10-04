@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:index, :show, :show_by_name]
 
   
   # GET /boards
@@ -14,6 +14,7 @@ class BoardsController < ApplicationController
   def show
   	@board = Board.find(params[:id])
   	@pins = @board.pins
+  	@user = @board.user
   end
 
   # GET /boards/new
