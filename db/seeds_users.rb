@@ -10,3 +10,13 @@
     password: "password"
     )
 end
+
+Category.create(
+	name: "ruby"
+	)
+Category.create(
+	name: "rails"
+	)
+Category.create(
+	name: "unknown"
+	)
