@@ -5,17 +5,13 @@ RSpec.describe "boards/show", type: :view do
 		@user = FactoryGirl.create(:user)
 		login(@user)
 
-    assign(:boards, [
-      Board.create!(
-        :name => "Name",
-        :user => @user
-      ),
-      Board.create!(
+    @board =  Board.create!(
         :name => "Name",
         :user => @user
       )
-    ])
+ 
   end
+
   after(:each) do
     if !@user.destroyed?
       @user.pinnings.destroy_all
@@ -26,7 +22,7 @@ RSpec.describe "boards/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Name/)
+    expect(@board.name).to eq("Name")
     expect(rendered).to match(//)
   end
 end

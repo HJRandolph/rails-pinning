@@ -1,8 +1,11 @@
 class Pin < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
+  
   has_many :pinnings
   has_many :users, through: :pinnings
+  has_many :boards, through: :pinnings
+  
   accepts_nested_attributes_for :pinnings
   
   validates_presence_of :title, :url, :slug, :text, :category_id
