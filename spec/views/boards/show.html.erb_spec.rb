@@ -5,11 +5,21 @@ RSpec.describe "boards/show", type: :view do
 		@user = FactoryGirl.create(:user)
 		login(@user)
 
-    @board =  Board.create!(
-        :name => "Name",
-        :user => @user
-      )
- 
+   
+    	board = Board.create!(
+    	  :name => "Name",
+    	  :user => @user
+    	)
+    	assign(:board, board)
+    	
+    
+    	pins = FactoryGirl.create(:pin) 
+
+    	assign(:pins, [
+    		FactoryGirl.create(:pin),
+    		FactoryGirl.create(:pin),
+    		FactoryGirl.create(:pin) 
+    		])
   end
 
   after(:each) do
@@ -22,7 +32,11 @@ RSpec.describe "boards/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(@board.name).to eq("Name")
+    expect(rendered).to eq(/name/)
     expect(rendered).to match(//)
   end
+ 
+  
 end
+
+ 
