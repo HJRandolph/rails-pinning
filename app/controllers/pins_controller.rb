@@ -23,11 +23,13 @@ class PinsController < ApplicationController
   
  def edit
  	@pin = Pin.find_by_id(params[:id])
- 	render :edit
+
+   	render :edit
  end
   
 def edit_by_name
 	@pin = Pin.find_by_slug(params[:slug])
+
  	render :edit
 end
   
@@ -58,15 +60,17 @@ end
   	render :show
   end
   
+  
+  
   def repin
   	@pin = Pin.find(params[:id])
-  	@pin.pinnings.create(user: current_user)
+	@pin.pinnings.create(user_id: current_user.id, board_id: :board_id, pin_id: @pin.id)
   	redirect_to user_path(current_user)
   end
   
 private
   def pin_params
-  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, pinnings_attributes: [:board_id, :user_id, :id])
+  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, :board_id, pinnings_attributes: [[:board_id, :user_id, :id]])
   end
 
 ################################### The Last End ###################################  

@@ -32,8 +32,7 @@ RSpec.describe "boards/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to eq(/name/)
-    expect(rendered).to match(//)
+    expect(rendered).to match(/Name/)
   end
  
   
