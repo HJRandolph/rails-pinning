@@ -64,7 +64,7 @@ end
   
   def repin
   	@pin = Pin.find(params[:id])
-	@pin.pinnings.create(user_id: current_user.id, board_id: :board_id, pin_id: @pin.id)
+	Pinning.create(user_id: current_user.id, board_id: :board_id, pin_id: @pin.id)
   	redirect_to user_path(current_user)
   end
   
