@@ -21,10 +21,6 @@ class FollowersController < ApplicationController
     @users = current_user.not_followed
   end
 
-  # GET /followers/1/edit
-  def edit
-  end
-
   # POST /followers
   # POST /followers.json
   def create
@@ -42,20 +38,7 @@ class FollowersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /followers/1
-  # PATCH/PUT /followers/1.json
-  def update
-    respond_to do |format|
-      if @follower.update(follower_params)
-        format.html { redirect_to @follower, notice: 'Follower was successfully updated.' }
-        format.json { render :show, status: :ok, location: @follower }
-      else
-        format.html { render :edit }
-        format.json { render json: @follower.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
+ 
   # DELETE /followers/1
   # DELETE /followers/1.json
   def destroy

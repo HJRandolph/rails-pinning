@@ -14,17 +14,17 @@
   <tbody>
     <% @followers.each do |follower| %>
       <tr>
-        <td><%= follower.user.full_name %>
-<% @user_boards = User.find_by(id: follower.user_id).boards %>
+        <td><%= link_to follower.user.full_name, follower %>
+
+</td>
+        <td><% @user_boards = User.find_by(id: follower.user_id).boards %>
 	<ul>
 <% @user_boards.each do |b| %>
 	<li><%= b.name %>, <%= b.pinnings.count %> pins</li>
 <% end %>
-</ul>
-</td>
-        <td><%= link_to 'Show', follower %></td>
+</ul></td>
 
-        <td><%= link_to 'Destroy', follower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Unfollow', follower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

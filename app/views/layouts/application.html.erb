@@ -20,10 +20,17 @@
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
       <li role="presentation">
-     	<%= link_to "Home", root_path, "role" => "menuitem", "tabindex" => "-1" %> 
+     	<%= link_to "Pindex", root_path, "role" => "menuitem", "tabindex" => "-1" %> 
+      </li>
+      <hr>
+      <li role="presentation">
+     	<%= link_to "User Home", user_path(current_user.id), "role" => "menuitem", "tabindex" => "-1" %> 
       </li>
       <li role="presentation">
-     	<%= link_to "User Page", user_path(current_user.id), "role" => "menuitem", "tabindex" => "-1" %> 
+      	<%= link_to "Following", followers_path %>
+      </li>
+            <li role="presentation">
+      	<%= link_to "Find People to Follow", new_follower_path %>
       </li>
       <li role="presentation">
         	<%= link_to "Add a New Pin", new_pin_path, "role" => "menuitem", "tabindex" => "-1"  %>
@@ -31,10 +38,7 @@
       <li role="presentation">
       	<%= link_to "Add a New Board", new_board_path, "role" => "menuitem", "tabindex" => "-1" %>
       </li>
-      <li role="presentation">
-            <%= link_to "Logout", logout_path(current_user), method: :delete, "role" => "menuitem", "tabindex" => "-1" %>
-        </li>
-
+      
       <hr>
 
       <% current_user.boards.each do |board| %>
@@ -44,6 +48,10 @@
           </a>
         </li>
       <% end %>
+		<hr>
+		<li role="presentation">
+            <%= link_to "Logout", logout_path(current_user), method: :delete, "role" => "menuitem", "tabindex" => "-1" %>
+        </li>
 
 
     </ul>

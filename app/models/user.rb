@@ -36,6 +36,7 @@ has_many :followers
 		self.followers.map {|f| User.find(f.follower_id)}
 	end
 	
+
 	
 ###################### the last end	######################
 end
