@@ -190,6 +190,7 @@ describe "POST repin" do
 		@user = FactoryGirl.create(:user)
 		login(@user)
 		@pin = FactoryGirl.create(:pin)
+		@board = FactoryGirl.create(:board)
 	end
 	
 	after(:each) do
@@ -202,7 +203,7 @@ describe "POST repin" do
 
 	
   it 'responds with a redirect' do
-  	post :repin, id: @pin.id, pin: @user.id
+  	post :repin, id: @pin.id, pin: @user.id, board: @board.id
   	expect(response.redirect?).to be(true) 
   end
  

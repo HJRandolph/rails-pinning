@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Followed:</strong>
   <%= @follower.user.first_name %> <%= @follower.user.last_name %>
 </p>
-
-<p>
-  <strong>Follower:</strong>
-  <%= @follower.follower_id %>
-</p>
-
+<ul>
+<% @follower.user.boards.each do |b| %>
+<li>
+  <%=  link_to b.name, board_path(b) %><br /> Number of pins: <%= b.pins.count %>
+</li>
+<% end %>
+</ul>
 <%= link_to 'Edit', edit_follower_path(@follower) %> |
 <%= link_to 'Back', followers_path %>
