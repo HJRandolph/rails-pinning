@@ -3,7 +3,7 @@ require 'database_cleaner'
 
 RSpec.describe BoardsController, type: :controller do
 	before(:each) do
-		@user = FactoryGirl.create(:user)
+		@user = FactoryGirl.create(:user_with_boards)
 		login(@user)
 		@board = @user.boards.first
 	end

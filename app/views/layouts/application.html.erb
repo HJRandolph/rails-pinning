@@ -41,7 +41,7 @@
       
       <hr>
 
-      <% current_user.boards.each do |board| %>
+      <% current_user.pinnable_boards.each do |board| %>
         <li role="presentation">
           <a role="menuitem" tabindex="-1" href="/boards/<%= board.id %>">
             <%= "#{board.name}" %>

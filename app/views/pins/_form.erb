@@ -48,7 +48,7 @@
 	<%= f.fields_for :pinning do |p| %>
 
 			<label>Which board?</label>
-			<%= p.collection_select(:board_id, current_user.boards, :id, :name, {}, {class: "form-control"}) %>
+			<%= p.collection_select(:board_id, current_user.pinnable_boards, :id, :name, {}, {class: "form-control"}) %>
 			<%= p.hidden_field :user_id, value: current_user.id %>
 	
 	<% end %>

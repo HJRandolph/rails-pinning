@@ -1,13 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h1>
   <%= @board.name %>
-</p>
+</h1>
 
 <p>
-  <strong>User:</strong>
-  <%= @board.user.first_name %> <%= @board.user.last_name %>
+  <strong>Board Owner:</strong>
+  <%= @board.user.full_name %>
 </p>
 
 <%= render partial: "shared/pins_list" %>
