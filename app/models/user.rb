@@ -22,11 +22,11 @@ has_many :followers
 	end
 	
 	def full_name
-		first_name + " " + last_name
+		first_name + " " + last_name.capitalize
 	end
 	
 	def followed
-  	  Follower.where("follower_id=?", self.id).map{|f| f.user }
+  	  Follower.where("follower_id=?", self.id).map{ |f| f.user }
 	end
 	
 	def not_followed
