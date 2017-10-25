@@ -2,7 +2,7 @@
 
 <p>
   <strong>Followed:</strong>
-  <%= @follower.user.first_name %> <%= @follower.user.last_name %>
+  <%= @follower.user.full_name %>
 </p>
 <ul>
 <% @follower.user.boards.each do |b| %>

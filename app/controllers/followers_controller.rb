@@ -12,11 +12,9 @@ class FollowersController < ApplicationController
   # GET /followers/1
   # GET /followers/1.json
   def show
-  	if @user.logged_in?
+
   	@followed = current_user.followed
-  	else
-  	redirect login_path
-  	end
+
   end
 
   # GET /followers/new
