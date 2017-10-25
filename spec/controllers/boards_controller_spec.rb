@@ -3,18 +3,26 @@ require 'database_cleaner'
 
 RSpec.describe BoardsController, type: :controller do
 	before(:each) do
-		@user = FactoryGirl.create(:user_with_boards)
+		@user = FactoryGirl.create(:user_with_boards_and_followers)
 		login(@user)
 		@board = @user.boards.first
 	end
 	
 	after(:each) do
 		if !@user.destroyed?
+			@user.followers.destroy_all
 			@user.pins.destroy_all
 			@user.boards.destroy_all
 			@user.destroy
 		end
 	end
+
+describe "GET index" do
+  it 'assigns @pinnable_boards to all pinnable boards' do
+    get :index
+    expect(assigns(:boards)).to eq(@user.pinnable_boards)
+  end
+end
 
 describe "GET new" do
 	it 'renders with successfully' do
@@ -93,7 +101,100 @@ describe "GET #show" do
 		get :show, id: @board.id
 		expect(assigns(:pins)).to eq(@board.pins)
 	end
+end
 
+describe "GET #edit" do
+  it 'responds successfully' do
+    get :edit, id: @board.id
+    expect(response.success?).to be(true)  
+  end
+  
+  it 'renders the edit view' do
+    get :edit, id: @board.id
+    expect(response).to render_template("edit")
+  end
+ 
+  it 'assigns an instance variable to a new board' do
+    get :edit, id: @board.id
+    expect(assigns(:board)).to eq(@board)
+  end
+ 
+  it 'redirects to the login page if user is not logged in' do
+    logout(@user)
+    get :edit, id: @board.id
+    expect(response).to redirect_to(:login)
+  end    
+ 
+  it 'sets @followers to the user\'s followers' do
+    get :edit, id: @board.id
+    expect(assigns(:followers)).to eq(@user.user_followers)
+  end
+end
+
+describe "PUT #update" do
+  before(:each) do
+    @board_hash = {
+      name: @board.name
+    }
+  end
+  
+  it 'responds with a redirect' do
+    put :update, board: @board_hash, id: @board
+    expect(response).to redirect_to(board_path)
+  end
+  
+  it 'updates a board' do
+    @board_hash[:name] = "New Name"
+    put :update, id: @board.id, board: @board_hash
+    expect(@board.reload.name).to eq("New Name")
+  end
+  
+  it 'redirects to the show view' do
+    put :update, id: @board.id, board: @board_hash
+    expect(response).to redirect_to(board_path)
+  end
+  
+  it 'redisplays edit form on error' do
+    @board_hash[:name] = ""
+    put :update, id: @board.id, board: @board_hash
+    expect(response).to render_template(:edit)
+  end
+  
+  it 'assigns the @errors instance variable on error' do
+    @board_hash[:name] = ""
+    put :update, id: @board.id, board: @board_hash
+    expect(assigns[:board].errors.any?).to be(true)
+  end
+  
+  it 'redirects to the login page if user is not loged in' do
+    logout(@user)
+    @board_hash[:name] = ""
+    put :update, id: @board.id, board: @board_hash
+    expect(response).to redirect_to(:login)
+  end
+
+it 'creates a BoardPinning' do
+    # This one is tricky, but see if you can understand what's going on
+ 
+    # We get the user's first follower - this is the one we want to let pin on @board
+    user_to_let_pin = FactoryGirl.create(:user)
+ 
+    # Now we're updating the hash we pass in to add 
+    # board_pinners_attributes with our user_id
+    @board_hash[:board_pinners_attributes] = []      
+    @board_hash[:board_pinners_attributes] << {user_id: user_to_let_pin.id, board_id: @board.id}
+ 
+    put :update, id: @board.id, board: @board_hash
+ 
+    # Then we expect this record to have been created
+    board_pinner = BoardPinner.where("user_id=? AND board_id=?", user_to_let_pin.id, @board.id)
+    expect(board_pinner.present?).to be (true)
+ 
+    # Let's clean up here
+    if board_pinner.present?
+      board_pinner.destroy_all
+    end
+  end
 end
 ########################### The Last End ###########################
 end

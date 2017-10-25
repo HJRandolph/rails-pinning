@@ -4,12 +4,14 @@ RSpec.describe PinsController do
 	before(:each) do
 		@user = FactoryGirl.create(:user_with_boards)
 		login(@user)
+		@board_pinner = BoardPinner.create(user: @user, board: FactoryGirl.create(:board))
 	end
 	
 	after(:each) do
 		if !@user.destroyed?
-			@user.pinnings.destroy_all
 			@user.pins.destroy_all
+			@user.pinnings.destroy_all
+			@user.board_pinners.destroy_all
 			@user.boards.destroy_all
 			@user.destroy
 		end
@@ -44,6 +46,18 @@ RSpec.describe PinsController do
       get :new
       expect(assigns(:pin)).to be_a_new(Pin)
     end
+    
+    it 'redirects to login when logged out' do
+      logout(@user)
+      get :new
+      expect(response).to redirect_to(:login)
+    end
+    
+    #it 'assigns @pinnable_boards to all pinnable boards' do
+    #  get :new
+    #  expect(assigns(:boards)).to eq(@user.pinnable_boards)
+    #end
+    
   end
  
  
@@ -62,6 +76,7 @@ RSpec.describe PinsController do
     after(:each) do
       pin = Pin.find_by_slug("rails-wizard")
       if !pin.nil?
+        @user.pinnings.destroy_all
         pin.destroy
       end
     end
@@ -99,7 +114,21 @@ RSpec.describe PinsController do
       expect(assigns[:errors].present?).to be(true)
     end    
     
-  end
+    it 'pins to a board for which the user is a board_pinner' do
+      @pin_hash[:pinnings_attributes] = []
+      board = @board_pinner.board
+      @pin_hash[:pinnings_attributes] << {board_id: board.id, user_id: @user.id}
+      post :create, pin: @pin_hash
+      pinning = Pinning.where("user_id=? AND board_id=?", @user.id, board.id)
+	  expect(pinning.present?).to be(true)
+	  
+
+
+
+	  
+    end
+ 
+end
   
 ################################### Edit/Update Tests ################################### 
 describe "GET edit" do
@@ -150,7 +179,6 @@ describe "POST update" do
     it 'responds with a redirect' do
       post :update, pin: @pin_hash, id: @pin
       expect(response).to redirect_to(pin_path)
-      #expect(response.redirect?).to be(true)
     end
 
     
@@ -216,6 +244,27 @@ describe "POST repin" do
 	post :repin, { :id => @pin.to_param }
 	expect(response).to redirect_to(user_path(@user))
   end
+  
+  it 'pins to a board for which the user is a board_pinner' do
+  @pin_hash = {
+    title: @pin.title, 
+    url: @pin.url, 
+    slug: @pin.slug, 
+    text: @pin.text,
+    category_id: @pin.category_id
+  }
+  board = @board_pinner.board
+  @pin_hash[:pinning] = {board_id: board.id}
+  post :repin, id: @pin.id, pin: @pin_hash
+  pinning = Pinning.where("user_id=? AND board_id=?", @user.id, board.id)
+  expect(pinning.present?).to be(true)
+  
+ 
+  if pinning.present?
+    pinning.destroy_all
+  end
+end
+
 	
 end
 ################################### The Last End ###################################	

@@ -71,7 +71,7 @@ end
   
 private
   def pin_params
-  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, :board_id, pinnings_attributes: [[:board_id, :user_id, :id]])
+  	params.require(:pin).permit(:title, :url, :slug, :text, :category_id, :image, :user_id, :board_id, pinnings_attributes: [:board_id, :user_id, :id])
   end
 
 ################################### The Last End ###################################  

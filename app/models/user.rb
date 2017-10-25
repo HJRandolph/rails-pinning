@@ -26,7 +26,7 @@ has_many :followers
 	end
 	
 	def followed
-		Follower.where("follower_id=?", self.id).map{|f| f.user }
+  	  Follower.where("follower_id=?", self.id).map{|f| f.user }
 	end
 	
 	def not_followed

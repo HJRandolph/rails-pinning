@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe "followers/index", type: :view do
-  before(:each) do
+ before(:each) do
+		@user = FactoryGirl.create(:user)
+		login(@user)
+
     assign(:followers, [
       Follower.create!(
         :user => nil,
@@ -13,6 +16,14 @@ RSpec.describe "followers/index", type: :view do
       )
     ])
   end
+  after(:each) do
+    if !@user.destroyed?
+      @user.pinnings.destroy_all
+      @user.boards.destroy_all 
+      @user.destroy
+    end
+  end
+
 
   it "renders a list of followers" do
     render
