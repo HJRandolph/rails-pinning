@@ -13,7 +13,7 @@
   <tbody>
     <% @followed.each do |follower| %>
       <tr>
-        <td><%= link_to follower.full_name, follower %>
+        <td><%= follower.full_name %>
         <% @user_boards = User.find(follower.id).boards %>
 	<ul class="follow">
 		<% @user_boards.each do |b| %>

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def current_user
-  	@user ||= User.where("id=?",(session[:user_id])).first
+  	@current_user ||= User.find_by(id: session[:user_id])
   end
 
   def logged_in?

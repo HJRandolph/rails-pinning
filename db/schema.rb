@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013165440) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20171017141327) do
 
   create_table "board_pinners", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,8 +20,8 @@ ActiveRecord::Schema.define(version: 20171013165440) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "board_pinners", ["board_id"], name: "index_board_pinners_on_board_id", using: :btree
-  add_index "board_pinners", ["user_id"], name: "index_board_pinners_on_user_id", using: :btree
+  add_index "board_pinners", ["board_id"], name: "index_board_pinners_on_board_id"
+  add_index "board_pinners", ["user_id"], name: "index_board_pinners_on_user_id"
 
   create_table "boards", force: :cascade do |t|
     t.string   "name"
@@ -33,7 +30,7 @@ ActiveRecord::Schema.define(version: 20171013165440) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
+  add_index "boards", ["user_id"], name: "index_boards_on_user_id"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,8 +43,8 @@ ActiveRecord::Schema.define(version: 20171013165440) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "followers", ["follower_id"], name: "index_followers_on_follower_id", using: :btree
-  add_index "followers", ["user_id"], name: "index_followers_on_user_id", using: :btree
+  add_index "followers", ["follower_id"], name: "index_followers_on_follower_id"
+  add_index "followers", ["user_id"], name: "index_followers_on_user_id"
 
   create_table "pinnings", force: :cascade do |t|
     t.integer "user_id"
@@ -55,9 +52,9 @@ ActiveRecord::Schema.define(version: 20171013165440) do
     t.integer "board_id"
   end
 
-  add_index "pinnings", ["board_id"], name: "index_pinnings_on_board_id", using: :btree
-  add_index "pinnings", ["pin_id"], name: "index_pinnings_on_pin_id", using: :btree
-  add_index "pinnings", ["user_id"], name: "index_pinnings_on_user_id", using: :btree
+  add_index "pinnings", ["board_id"], name: "index_pinnings_on_board_id"
+  add_index "pinnings", ["pin_id"], name: "index_pinnings_on_pin_id"
+  add_index "pinnings", ["user_id"], name: "index_pinnings_on_user_id"
 
   create_table "pins", force: :cascade do |t|
     t.string   "title"
@@ -65,18 +62,17 @@ ActiveRecord::Schema.define(version: 20171013165440) do
     t.text     "text"
     t.string   "slug"
     t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
-  add_index "pins", ["category_id"], name: "index_pins_on_category_id", using: :btree
-  add_index "pins", ["user_id"], name: "index_pins_on_user_id", using: :btree
+  add_index "pins", ["category_id"], name: "index_pins_on_category_id"
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -87,12 +83,4 @@ ActiveRecord::Schema.define(version: 20171013165440) do
     t.string   "password_digest"
   end
 
-  add_foreign_key "board_pinners", "boards"
-  add_foreign_key "board_pinners", "users"
-  add_foreign_key "boards", "users"
-  add_foreign_key "followers", "users"
-  add_foreign_key "followers", "users", column: "follower_id"
-  add_foreign_key "pinnings", "pins"
-  add_foreign_key "pinnings", "users"
-  add_foreign_key "pins", "users"
 end

@@ -24,7 +24,7 @@
       </li>
       <hr>
       <li role="presentation">
-     	<%= link_to "User Home", user_path(current_user.id), "role" => "menuitem", "tabindex" => "-1" %> 
+     	<%= link_to "User Home", current_user, "role" => "menuitem", "tabindex" => "-1" %> 
       </li>
       <li role="presentation">
       	<%= link_to "Following", followers_path %>
