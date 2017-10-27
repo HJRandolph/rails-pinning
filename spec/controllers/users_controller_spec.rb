@@ -34,13 +34,14 @@ RSpec.describe UsersController, type: :controller do
   # UsersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "returns a success response" do
-      user = User.create! valid_attributes
-      get :index, {}, valid_session
-      expect(response).to be_success
-    end
-  end
+# 	Commented out since the index route for users has been removed
+#  describe "GET #index" do
+#    it "returns a success response" do
+#      user = User.create! valid_attributes
+#      get :index, {}, valid_session
+#      expect(response).to be_success
+#    end
+#  end
 
   describe "GET #show" do
     it "returns a success response" do

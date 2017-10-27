@@ -231,17 +231,17 @@ describe "POST repin" do
 
 	
   it 'responds with a redirect' do
-  	post :repin, id: @pin.id, pin: @user.id, board: @board.id
+    post :repin, id: @pin.id, pin: { pinning: { board_id: @board.id, user_id: @user.id } }
   	expect(response.redirect?).to be(true) 
   end
  
   it 'creates a user.pin' do
-      post :repin, {:id => @pin.to_param}
+      post :repin, id: @pin.id, pin: { pinning: { board_id: @board.id, user_id: @user.id } }
       expect(@user.pins.present?).to be(true)
   end
  
   it 'redirects to the user show page' do
-	post :repin, { :id => @pin.to_param }
+    post :repin, id: @pin.id, pin: { pinning: { board_id: @board.id, user_id: @user.id } }
 	expect(response).to redirect_to(user_path(@user))
   end
   
