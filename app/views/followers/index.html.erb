@@ -21,7 +21,7 @@
 		<% end %>
 	</ul></td>
 
-        <td><%= link_to 'Unfollow', follower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Unfollow', Follower.find_by_user_id(follower.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
