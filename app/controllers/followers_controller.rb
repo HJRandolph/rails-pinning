@@ -46,7 +46,7 @@ class FollowersController < ApplicationController
   def destroy
     @follower.destroy
     respond_to do |format|
-      format.html { redirect_to followers_url, notice: 'Follower was successfully destroyed.' }
+      format.html { redirect_to followers_url, notice: 'Unfollow was successful.' }
       format.json { head :no_content }
     end
   end
