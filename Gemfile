@@ -45,7 +45,7 @@ group :development, :test do
 end
 
 gem 'faker'	
-gem 'paperclip', '~> 4.3.6'
+gem 'paperclip', '~> 5.2.0'
 gem 'aws-sdk', '< 2.0'
 
 group :test do
