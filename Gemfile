@@ -47,7 +47,7 @@ end
 gem 'faker'	
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
-gem 'pg'
+
 
 group :test do
 	gem 'shoulda-matchers'
