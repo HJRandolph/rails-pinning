@@ -29,7 +29,9 @@
             <p class="text"><%= "#{pin.text}" %></p>
 
             <%= image_tag pin.image(:thumb) %>
+            <% if @user.pin.nil? %>
 				<%= render partial: "shared/repin_form", locals: {pin: pin} %>
+				<% end %>
             </div>
           </div>
 
