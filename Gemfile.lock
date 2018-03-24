@@ -97,7 +97,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    pg (1.0.0)
+    pg (0.20.0)
     puma (3.11.3)
     rack (1.6.9)
     rack-test (0.6.3)
@@ -210,7 +210,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   paperclip
-  pg
+  pg (= 0.20.0)
   puma
   rails (~> 4.2.7.1)
   rails_12factor
