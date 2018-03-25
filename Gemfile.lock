@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 4c0eacdb585d017d53b202ad67631fbde13d2dbd
+  specs:
+    paperclip (6.0.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -100,12 +111,6 @@ GEM
     multi_json (1.13.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    paperclip (6.0.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     pg (0.20.0)
     puma (3.11.3)
     rack (1.6.9)
@@ -218,7 +223,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
-  paperclip
+  paperclip!
   pg (= 0.20.0)
   puma
   rails (~> 4.2.7.1)
