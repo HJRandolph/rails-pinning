@@ -84,7 +84,7 @@ Rails.application.configure do
   # Image uploads
   config.paperclip_defaults = {
   :storage => :s3,
-  :path  => ":imageable_type/:imageable_id/:filename",
+  
   :s3_region => ENV['AWS_REGION'],
   :s3_credentials => {
     :bucket => ENV['S3_BUCKET_NAME'],
