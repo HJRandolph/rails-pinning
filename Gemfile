@@ -46,7 +46,7 @@ end
 
 gem 'faker'	
 
-gem 'paperclip', '~> 4.3.6'
+gem 'paperclip'
 #gem 'aws-sdk', '~> 3'
 gem 'aws-sdk-s3'
 
