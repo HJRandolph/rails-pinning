@@ -45,7 +45,7 @@ group :development, :test do
 end
 
 gem 'faker'	
-gem 'paperclip'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 #gem 'aws-sdk', '~> 3'
 gem 'aws-sdk-s3'
 
