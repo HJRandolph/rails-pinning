@@ -219,7 +219,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
-  paperclip (= 3.0.4)
+  paperclip
   pg (= 0.20.0)
   puma
   rails (~> 4.2.7.1)
