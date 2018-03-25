@@ -12,7 +12,7 @@ class Pin < ActiveRecord::Base
   validates_uniqueness_of :slug
 
   has_attached_file :image, styles: { medium: "300x300", thumb: "60x60" }, 
-  default_url: "http://placebear.com/200/300", :url => "/:class/:attachment/:id/:style_image_:id.png"
+  default_url: "http://placebear.com/200/300"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
   validates_attachment_file_name :image, matches: [/png\z/, /jpe?g\z/]
   validate :image_size
