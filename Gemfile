@@ -48,7 +48,7 @@ gem 'faker'
 
 gem 'paperclip', '5.0.0'
 gem 'aws-sdk'
-gem 'aws-sdk-s3'
+#gem 'aws-sdk-s3'
 
 
 
