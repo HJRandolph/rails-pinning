@@ -37,7 +37,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.4)
-    aws-partitions (1.72.0)
+    aws-partitions (1.73.0)
     aws-sdk-core (3.17.1)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
