@@ -26,11 +26,16 @@
 	<b>Visit: </b>
 	<%= link_to "#{@pin.title}", @pin.url, html_options = {target: "_blank", class: "url"} %>
 </div>
+<% if logged_in? %>
+	<% if current_user == @pin.user || current_user.admin? %>
+	<p class="col-md-9"><%= link_to "Edit", edit_pin_by_name_path(@pin.slug) %> <%= @pin.user.first_name %></p> 
 
-<% if correct_user %>
-<p class="col-md-9"><%= link_to "Edit", edit_pin_by_name_path(@pin.slug) %></p> 
-<p class="col-md-3"><a href="/"><i class="fa fa-arrow-left"></i>Back to Home</a></p>
+	<p class="col-md-3"><a href="/"><i class="fa fa-arrow-left"></i>Back to Home</a></p>
 <% else %>
-<p class="col-md-3 wrong_user"><a href="/"><i class="fa fa-arrow-left"></i>Back to Home</a></p>
+	<p class="col-md-3 wrong_user"><a href="/"><i class="fa fa-arrow-left"></i>Back to Home</a></p>
+<% end %>
+<% else %>
+
+	<p class="col-md-3 wrong_user"><a href="/"><i class="fa fa-arrow-left"></i>Back to Home</a></p>
 <% end %>
 </div>

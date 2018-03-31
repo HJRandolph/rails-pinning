@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017141327) do
+ActiveRecord::Schema.define(version: 20180331011103) do
 
   create_table "board_pinners", force: :cascade do |t|
     t.integer  "user_id"
@@ -78,9 +78,10 @@ ActiveRecord::Schema.define(version: 20171017141327) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
+    t.boolean  "admin",           default: false
   end
 
 end

@@ -23,14 +23,23 @@ class PinsController < ApplicationController
   
  def edit
  	@pin = Pin.find_by_id(params[:id])
-
-   	render :edit
+	if @pin.user == current_user || current_user.admin?
+	   	render :edit
+   	else 
+   		flash[:warning] = "You must be the pin creator or an admin to edit/update a pin."
+   		redirect_to pins_path
+   		
+   	end
  end
   
 def edit_by_name
 	@pin = Pin.find_by_slug(params[:slug])
-
- 	render :edit
+	if @pin.user == current_user || current_user.admin?
+	   	render :edit
+   	else 
+   		flash[:warning] = "You must be the pin creator or an admin to edit/update a pin."
+  		redirect_to pins_path
+   	end
 end
   
    def update

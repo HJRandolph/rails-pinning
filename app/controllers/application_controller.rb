@@ -5,16 +5,11 @@ class ApplicationController < ActionController::Base
   
 
   helper_method :current_user
-  helper_method :correct_user
   
     def current_user
         @current_user ||= User.find_by(id: session[:user_id])
     end
     
-    def correct_user
-  	  @correct_user ||= User.find_by(id: session[:user_id])
-    end
-  
     def require_login
 		if !logged_in?
 			redirect_to :login

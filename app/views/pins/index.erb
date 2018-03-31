@@ -3,8 +3,9 @@
   <h3>A Collection of Ruby on Rails Resources for Beginners</h3>
 </div>
 <hr/>
-
-	
+	<% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+	<% end %>
 		<%= render partial: "shared/pins_list" %>
   
   </div>
