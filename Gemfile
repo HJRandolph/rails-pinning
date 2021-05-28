@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.7.1'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '0.20.0'
 # Use SCSS for stylesheets
@@ -27,7 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'bcrypt', '~> 3.1.7'
 
 # Use Puma as the web server
-gem 'puma'
+gem 'puma', '>= 4.3.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
