@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.6.6'
+ ruby '2.7.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.7.1'
-
+gem 'rails', '4.2.8'
+gem 'bigdecimal', '1.3.5'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.20.0'
 # Use SCSS for stylesheets
@@ -36,7 +36,7 @@ gem 'puma', '>= 4.3.8'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'sqlite3'
+  gem 'sqlite3', '1.3.13'
   # Access an IRB console on exception pages or by using <%= console %> in views
   #gem 'web-console', '~> 2.0'
 
@@ -56,7 +56,6 @@ gem 'aws-sdk-s3'
 
 group :test do
 	gem 'shoulda-matchers'
-	gem 'spring'
 	gem 'factory_girl'
 	#gem 'database-cleaner'
 end
