@@ -3,7 +3,7 @@ source 'https://rubygems.org'
  ruby '2.7.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.6'
-gem 'bigdecimal', '1.3.5'
+#gem 'bigdecimal', '~> 1.3', '>= 1.3.5'
 # Use postgresql as the database for Active Record
 gem 'pg', '0.20.0'
 # Use SCSS for stylesheets
@@ -14,10 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'psych', '< 4'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
 
 gem 'json', '>= 2.3.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -39,7 +38,7 @@ gem 'puma', '>= 4.3.8'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'sqlite3', '1.3.13'
+  gem 'sqlite3', '>=1.3.6'
   # Access an IRB console on exception pages or by using <%= console %> in views
   #gem 'web-console', '~> 2.0'
 
