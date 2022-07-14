@@ -1351,12 +1351,8 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.16.2)
     nio4r (2.5.8)
-    nokogiri (1.13.7)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
     nokogiri (1.13.7-arm64-darwin)
       racc (~> 1.4)
     paperclip (6.0.0)
@@ -1470,7 +1466,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
-  ruby
 
 DEPENDENCIES
   aws-sdk (>= 2.0)
@@ -1504,4 +1499,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.3.14
+   2.2.22
