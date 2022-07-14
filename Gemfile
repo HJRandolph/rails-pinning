@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
- ruby '2.7.2'
+ ruby '3.0.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.7.1'
 #gem 'bigdecimal', '~> 1.3', '>= 1.3.5'
